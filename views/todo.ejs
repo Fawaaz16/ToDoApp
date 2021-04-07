@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>To Do List</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/assets/styles.css" type="text/css">
+        <!-- the above href address is going to work bocause of the middleware in app.js(static files) -->
+        <!-- whenever we type any url and make a request its going to fire the middleware and 
+        its gonna look for the file in public folder -->
+    </head>
+    <body>
+        <h1>My todo list</h1>
+        <div id="todo-table">
+            <form method="POST" action="/lists">
+                <input type="text" name="body" placeholder="Add new item" required>
+                <button type="submit">Add item</button>
+            </form>
+            <ul>
+                <% if ( lists.length > 0 ){ %>
+                    <% lists.forEach(list => { %>
+                        <a href="/lists/<%=list._id %>" class="single">
+                            <li><%= list.body %></li>
+                        </a>
+                    <%  }) %>
+                <% } else { %>
+                    <p>There are no lists to be displayed</p>
+                <% } %>
+
+            </ul>
+        </div>
+    </body>
+</html>
